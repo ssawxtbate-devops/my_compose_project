@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  # Сервис 1: Наш веб-сервер
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  # Сервис 2: База данных
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
